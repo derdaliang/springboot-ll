@@ -26,6 +26,16 @@ public class BookServiceImpl extends ServiceImpl<BookMapper,book> implements Boo
     private BookMapper bookMapper;
 
     @Override
+    public String addBook(book entity) {
+        if(entity.getName()==null) return "fail，the name cannot be null";
+        else if(bookMapper.findIdByName(entity.getName())!=null) return "fail,the name is exits,pleases change and choose another";
+        else if(entity.getPrices()<0) return "fail,prices cannot below zero";
+        else if(entity.getNumber()<0) return "fail,number cannot below zero";
+        else bookMapper.insert(entity);
+        return "success insert,congratulation~";
+    }
+
+    @Override
     public boolean saveBatch(Collection<book> entityList, int batchSize) {
         return false;
     }
@@ -40,6 +50,7 @@ public class BookServiceImpl extends ServiceImpl<BookMapper,book> implements Boo
 //        bookMapper.updateById(entity);
         return updateById(entity);
     }
+
 
     @Override
     public boolean updateBatchById(Collection<book> entityList, int batchSize) {
@@ -90,4 +101,5 @@ public class BookServiceImpl extends ServiceImpl<BookMapper,book> implements Boo
     public Long getIdByName(String name) {
       return bookMapper.findIdByName(name);
     }
+
 }

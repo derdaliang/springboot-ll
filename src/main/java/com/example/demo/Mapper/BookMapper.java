@@ -8,9 +8,12 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 public interface BookMapper extends BaseMapper<book> {
-    @Select("select book_id from book  where name like #{name}")
+    //mybatis-plus 自定义sql的两种方式：1通过注解
+    @Select("select book_id from book  where name=#{name}")
     Long findIdByName(String name);
 //    @Update("")
 //    int updateById();
+    //2.通过xml配置文件
     IPage<book> selectPageVo(Page<?> page);
+
 }

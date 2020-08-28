@@ -41,13 +41,13 @@ public class UserController {
         else if(flag==2) return "success login";
         else return null;
     }
-//    @GetMapping(value = "users/{id}/delete")
-//    public String deleteById(@PathVariable("id") Long id){
-//        int flag=userService.deleteById(id);
-//        if(flag==0) return "user id is not-exits";
-//        else if(flag==1) return "success delete";
-//        else return null;
-//    }
+    @GetMapping(value = "users/{id}/delete")
+    public String deleteById(@PathVariable("id") Long id){
+        int flag=userService.deleteById(id);
+        if(flag==0) return "user id is not-exits";
+        else if(flag==1) return "success delete";
+        else return null;
+    }
     @PostMapping(value = "users/{id}")
     public String editUser(@PathVariable("id") Long id,User user){
         User temp=userMapper.selectById(id);

@@ -13,4 +13,7 @@
     <select id="selectPageVo" resultMap="BaseResultMap">
         SELECT * FROM book
     </select>
+    <update id="updateByNumber">
+
+    </update>
 </mapper>
