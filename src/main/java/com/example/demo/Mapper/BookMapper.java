@@ -15,5 +15,10 @@ public interface BookMapper extends BaseMapper<book> {
 //    int updateById();
     //2.通过xml配置文件
     IPage<book> selectPageVo(Page<?> page);
-
+    @Update("update book set number=number-1 where book_id=#{bookId}")
+    boolean reduceNumber(Long bookId);
+    @Update("update book set number=number+1 where book_id=#{bookId}")
+    boolean addNumber(Long bookId);
+    @Select("select * from book where book_id=#{bookId}")
+    book selectById(Long bookId);
 }

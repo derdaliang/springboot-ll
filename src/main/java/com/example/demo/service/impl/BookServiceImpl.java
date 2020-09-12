@@ -36,6 +36,28 @@ public class BookServiceImpl extends ServiceImpl<BookMapper,book> implements Boo
     }
 
     @Override
+    public book getById(Long bookId) {
+        return bookMapper.selectById(bookId);
+    }
+
+    @Override
+    public boolean ReduceNumberById(Long bookId) {
+        book b=bookMapper.selectById(bookId);
+        if(b.getNumber()<=0) {
+            return false;
+        }else{
+            return bookMapper.reduceNumber(bookId);
+        }
+    }
+
+    @Override
+    public boolean addNumberById(Long bookId) {
+        book b=bookMapper.selectById(bookId);
+        if(b==null) return false;
+        return bookMapper.addNumber(bookId);
+    }
+
+    @Override
     public boolean saveBatch(Collection<book> entityList, int batchSize) {
         return false;
     }

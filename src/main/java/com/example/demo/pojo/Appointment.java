@@ -1,9 +1,13 @@
-package com.demo.sys.appointment.entity;
+package com.example.demo.pojo;
 
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * <p>
@@ -13,15 +17,15 @@ import lombok.EqualsAndHashCode;
  * @author 李雪锋
  * @since 2020-08-28
  */
+@Entity
 @Data
-@EqualsAndHashCode(callSuper = false)
-public class Appointment implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+@Table(name = "appointment")
+public class Appointment {
 
     /**
      * 图书ID
      */
+    @Id
     private Long bookId;
 
     /**

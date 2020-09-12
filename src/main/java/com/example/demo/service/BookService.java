@@ -16,4 +16,8 @@ public interface BookService extends IService<book> {
     List<book> queryAllBooks();
     IPage<book> selectBookPage(IPage<book> page);
     String addBook(book entity);
+    book getById(Long bookId);
+    boolean ReduceNumberById(Long bookId);
+
+    boolean addNumberById(Long bookId);
 }
