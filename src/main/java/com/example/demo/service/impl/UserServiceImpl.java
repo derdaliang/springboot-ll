@@ -5,7 +5,10 @@ import com.example.demo.pojo.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -35,10 +38,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int checkByIdAndPassword(Long id, String password) {
-        if(userMapper.selectById(id)==null) return 0;
-        else if(!userMapper.selectById(id).getPassword().equals(password)) return 1;
-        else return 2;
+    public User checkByIdAndPassword(Long id, String password) {
+        User user=userMapper.selectById(id);
+        if(user==null) return null;
+        else if(!user.getPassword().equals(password)){
+            return null;
+        }
+        else
+            return user;
     }
 
     @Override
@@ -51,5 +58,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public int updateById(User user) {
         return userMapper.updateById(user);
+    }
+
+    @Override
+    public User getLoginSession() {
+        HttpServletRequest servletRequest= ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        return (User)servletRequest.getSession().getAttribute("userSession");
     }
 }

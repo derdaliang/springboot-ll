@@ -17,6 +17,7 @@
 
 	<properties>
 		<java.version>8</java.version>
+		<springfox-swagger.version>3.0.0</springfox-swagger.version>
 	</properties>
 
 	<dependencies>
@@ -59,7 +60,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
+			<version>8.0.21</version>
 		</dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -67,6 +68,17 @@
             <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox-swagger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox-swagger.version}</version>
+		</dependency>
 
     </dependencies>
 

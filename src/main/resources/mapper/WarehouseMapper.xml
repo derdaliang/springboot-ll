@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Mapper.WarehouseMapper">
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.example.demo.pojo.Warehouse">
+                    <id column="ma_no" property="maNo" />
+                    <result column="ma_name" property="maName" />
+                    <result column="user_no" property="userNo" />
+                    <result column="operate_date" property="operateDate" />
+                    <result column="operate_time" property="operateTime" />
+                    <result column="lock_yn" property="lockYn" />
+        </resultMap>
+
+        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        ma_no, ma_name, user_no, operate_date, operate_time, lock_yn
+    </sql>
+
+</mapper>

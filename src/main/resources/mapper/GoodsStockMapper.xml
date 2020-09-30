@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Mapper.GoodsStockMapper">
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.example.demo.pojo.GoodsStock">
+                    <id column="goods_id" property="goodsId" />
+                    <result column="ma_no" property="maNo" />
+                    <result column="mt_area" property="mtArea" />
+                    <result column="lot_no" property="lotNo" />
+                    <result column="mt_qty" property="mtQty" />
+                    <result column="lock_qty" property="lockQty" />
+                    <result column="mt_unit" property="mtUnit" />
+        </resultMap>
+
+        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+        goods_id, ma_no, mt_area, lot_no, mt_qty, lock_qty, mt_unit
+    </sql>
+
+</mapper>

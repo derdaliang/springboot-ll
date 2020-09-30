@@ -8,7 +8,8 @@ public interface UserService  {
     List<User> selectAllUser();
     String getName(Long id);
     String addUser(User user);
-    int checkByIdAndPassword(Long id,String password);
+    User checkByIdAndPassword(Long id,String password);
     int deleteById(Long id);
     int updateById(User user);
+    User getLoginSession();
 }

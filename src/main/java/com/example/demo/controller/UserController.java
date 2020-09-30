@@ -5,7 +5,11 @@ import com.example.demo.pojo.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -32,14 +36,24 @@ public class UserController {
         if(userMapper.selectById(user.getId())!=null) return "fall,caused by the id already exists";
         else return userService.addUser(user);
     }
-    @PostMapping(value = "login")
+    @GetMapping(value = "login")
     public String login(@RequestParam Long id,
-                        @RequestParam String password){
-        int flag=userService.checkByIdAndPassword(id,password);
-        if(flag==0) return "user is not-exists";
-        else if(flag==1) return "password is wrong";
-        else if(flag==2) return "success login";
-        else return null;
+                        @RequestParam String password,HttpSession session){
+        HttpServletRequest servletRequest= ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        if(servletRequest.getSession().getAttribute("userSession")!=null) return "already login";
+        User user=userService.checkByIdAndPassword(id,password);
+        if(user==null) return "user_no isExits or the password is wrong,fail login.";
+        else {
+            session.setAttribute("userSession",user);
+            return "success login";
+        }
+    }
+    @GetMapping(value = "loginOut")
+    public String loginOut(){
+        HttpServletRequest servletRequest= ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        if(servletRequest.getSession().getAttribute("userSession")==null) return "未登录";
+        servletRequest.getSession().removeAttribute("userSession");
+        return "登出成功";
     }
     @GetMapping(value = "users/{id}/delete")
     public String deleteById(@PathVariable("id") Long id){

@@ -10,7 +10,7 @@
         <result column="prices" property="prices" />
     </resultMap>
 
-    <select id="selectPageVo" resultMap="BaseResultMap">
+    <select id="selectPageVo"  resultMap="BaseResultMap">
         SELECT * FROM book
     </select>
     <update id="updateByNumber">
